@@ -4,8 +4,7 @@ let socket = io.connect('http://localhost:' + port);
 socket.on('userName', (username) => {
     let text = 'Имя пользователя: ' + username;
     console.log(text);
-    let new_message = $('<h3>', {text: text});
-    $('#ChatArea').append(new_message);
+    $('#username_chat').text(text);
 });
 
 socket.on('newUser', (username) => {
