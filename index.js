@@ -10,7 +10,7 @@ const app = express();
 const port = 1488;
 
 app.get('/', (req, res) => {
-    res.send('Всем плотной гойдочки!');
+    res.send('Главная страница сайта!!!!');
 })
 
 app.listen(port, () => {
