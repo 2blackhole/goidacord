@@ -16,3 +16,7 @@ npm install
 ```
 npm start
 ```
+Потом заходим на сайт:
+```
+http:/localhost:3000
+```
