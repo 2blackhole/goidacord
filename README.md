@@ -18,5 +18,5 @@ npm start
 ```
 Потом заходим на сайт:
 ```
-http:/localhost:3000
+http://localhost:3000
 ```
