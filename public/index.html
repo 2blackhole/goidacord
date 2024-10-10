@@ -5,13 +5,16 @@
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" charset="utf-8"></script>
     <script src="main.js" charset="utf-8"></script>
-    <!-- Здесь можете подключить ваш main.css -->
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="fonts/neris/neris.css">
   </head>
   <body>
-    <h1>ЧАТ</h1>
-    <textarea name="name" rows="8" cols="40"></textarea>
-    <p></p>
-    <input type="text" name="text" size="20">
-    <button type="button" name="button">Отправить</button>
+    <h1 id="TitleCompany">GoidaCORD</h1>
+    <div name="name" rows="8" cols="40" id="ChatArea"></div>
+    <form id="panel" onsubmit="return false">
+        <input type="text" name="text" id="ChatInput" placeholder="Введите текст сообщения">
+        <button type="submit" name="button" id="Button_SendMessage">Отправить</button>
+    </form>
+    
   </body>
 </html>

@@ -1,0 +1,80 @@
+html, body {
+    margin: 0;
+}
+body {
+    background-color: #111111;
+    color: white;
+}
+
+#TitleCompany {
+    text-align: center;
+    font-family: 'Neris';
+    margin-top: 5%;
+}
+
+#ChatArea{
+    font-family: 'Neris';
+    width: 50%;
+    min-width: 400px;
+    background-color: #222222;
+    height: 50%;
+    border-top-left-radius: 2em;
+    border-top-right-radius: 2em;
+    white-space: nowrap;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    font-size: 0.8em;
+    margin: auto;
+}
+#ChatArea::-webkit-scrollbar{
+    width: 0;
+}
+#ChatArea > div{
+    display: flex;
+    align-items: center;
+
+}
+#ChatArea > h3{
+    text-align: center;
+    font-size: 1.2em;
+}
+.icon-user{
+    height: 21px;
+    width: 21px;
+    padding: 10px;
+}
+#panel{
+    display: grid;
+    width: 50%;
+    min-width: 400px;
+    margin: auto;
+}
+#Button_SendMessage{
+    margin-top: 25px;
+    margin-left: 25%;
+    margin-right: 25%;
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    background-color: #333333;
+    height: 30px;
+    transition: 0.2s all;
+}
+#Button_SendMessage:active{
+    background-color: white;
+    color: #333333;
+    transform: scale(0.95);
+}
+#ChatInput{
+    border: 0;
+    border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+    height: 4em;
+    padding-left: 20px;
+    background-color: #333333;
+    color: white;
+}
+#ChatInput{
+    outline: none;
+}
