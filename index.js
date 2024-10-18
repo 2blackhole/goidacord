@@ -5,8 +5,9 @@ const io = require('socket.io')(server);
 const log4js = require('log4js');
 const logger = log4js.getLogger();
 
-
+logger.level = 'info';
 const port = 3000;
+
 
 logger.debug("Script has been started...")
 server.listen(port);

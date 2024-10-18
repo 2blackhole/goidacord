@@ -3,18 +3,22 @@
     <meta charset="utf-8">
     <title>chat</title>
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js" charset="utf-8"></script>
     <script src="main.js" charset="utf-8"></script>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="fonts/neris/neris.css">
   </head>
   <body>
-    <h1 id="TitleCompany">GoidaCORD</h1>
-    <div name="name" rows="8" cols="40" id="ChatArea"><h3 id="username_chat"></h3></div>
-    <form id="panel" onsubmit="return false">
-        <input type="text" name="text" id="ChatInput" placeholder="Введите текст сообщения">
-        <button type="submit" name="button" id="Button_SendMessage">Отправить</button>
-    </form>
-    
+    <div id="main_block">
+      <h1 id="TitleCompany">GoidaCORD</h1>
+      <form id = "auth-panel" onsubmit="return false">
+        <input type="text"    class = "auth-input" id="Username_auth" placeholder="Username">
+        <input type="password"class = "auth-input" id="Password_auth" placeholder="Password">
+        <a id="ebat_lox" href = "https://www.youtube.com/watch?v=xvFZjo5PgG0">Забыли пароль?</a>
+        <div class = "panel_buttons">
+          <button id = "login_button" type="submit">Войти</button>
+          <button id = "register_button">Регистрация</button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

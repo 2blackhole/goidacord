@@ -6,75 +6,62 @@ body {
     color: white;
 }
 
+#main_block{
+    display: grid;
+    width: 100%;
+    justify-content: center;
+}
+
 #TitleCompany {
     text-align: center;
     font-family: 'Neris';
-    margin-top: 5%;
+    margin-top: 5em;
 }
-
-#ChatArea{
-    font-family: 'Neris';
-    width: 50%;
-    min-width: 400px;
-    background-color: #222222;
-    height: 50%;
-    border-top-left-radius: 2em;
-    border-top-right-radius: 2em;
-    white-space: nowrap;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
-    font-size: 0.8em;
-    margin: auto;
-}
-#ChatArea::-webkit-scrollbar{
-    width: 0;
-}
-#ChatArea > div{
-    display: flex;
-    align-items: center;
-
-}
-#ChatArea > h3{
-    text-align: center;
-    font-size: 1.2em;
-}
-.icon-user{
-    height: 21px;
-    width: 21px;
-    padding: 10px;
-}
-#panel{
+#auth-panel{
     display: grid;
     width: 50%;
     min-width: 400px;
     margin: auto;
 }
-#Button_SendMessage{
+.panel_buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.panel_buttons > button{
     margin-top: 25px;
-    margin-left: 25%;
-    margin-right: 25%;
     border: 0;
     border-radius: 20px;
     color: white;
     background-color: #333333;
-    height: 30px;
+    height: 50px;
     transition: 0.2s all;
+    font-size: 0.9em;
+    font-family: 'Neris';
 }
-#Button_SendMessage:active{
+.panel_buttons > button:active{
     background-color: white;
     color: #333333;
     transform: scale(0.95);
 }
-#ChatInput{
+.auth-input{
     border: 0;
-    border-bottom-left-radius: 2em;
-    border-bottom-right-radius: 2em;
+    border-radius: 2em;
     height: 4em;
     padding-left: 20px;
     background-color: #333333;
     color: white;
-}
-#ChatInput{
     outline: none;
+    align-self: center;
+    margin-top: 30px;
+    font-family: 'Neris';
+    font-size: 0.9em;
+}
+
+#ebat_lox{
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Neris';
+    font-size: 0.7em;
+    color: grey;
 }
