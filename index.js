@@ -15,9 +15,8 @@ server.listen(port);
 app.use(express.static(__dirname + '/public'), (req, res) => {
     //проверка на авторизацию, если выполнена, то не направляется на логин
 
-    res.sendFile(__dirname + '/public/login.html');
+    res.sendFile(__dirname +'/public/login.html');
 });
-
 
 io.on('connection', (socket) => {
     let name = 'U' + (socket.id).toString().substr(1,4);
