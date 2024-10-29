@@ -1,7 +1,7 @@
 const db = require('./database')
 
 const createItem = (login, password, email, callback) => {
-    const sql = `INSERT INTO users (login, password, email) VALUES (?, ?)`
+    const sql = `INSERT INTO users (login, password, email) VALUES (?, ?, ?)`
     db.run(sql, [login, password, email], (err) => {
         callback(err, {id: this.lastID})
     })
@@ -22,4 +22,7 @@ const deleteItem = (id, callback) => {
     db.run(sql, id, callback)
 }
 
-module.exports(createItem, readItems, updateItem, deleteItem);
+exports.createItem = createItem;
+exports.readItems = readItems;
+exports.updateItem = updateItem;
+exports.deleteItem = deleteItem;

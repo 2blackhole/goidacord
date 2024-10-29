@@ -31,12 +31,18 @@ else {
 
 if (registerButton) {
     registerButton.addEventListener(
-        'click',
-        () => {
-            socket.emit('register')
+        'click', () => {
+            if (loginForm.value && passwordForm.value.length >= 8) {
+                socket.emit('register', {
+                    login: loginForm.value,
+                    password: passwordForm.value
+                })
+            } else {
+                alert("Invalid register credentials. Your Login must be not null and Password length must be at least 8")
+            }
         }
     )
 }
 else {
-    console.log("There is no " + registerButton)
+    console.log("There is no " + loginButton)
 }

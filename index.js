@@ -1,15 +1,7 @@
-// const express = require('express');
-// const app = express();
-// const createServer = require('node:http')
-// const server = createServer(app);
-// const io = require('socket.io')(server);
-// const log4js = require('log4js');
-// const logger = log4js.getLogger();
-
 const express = require('express');
-const {createServer} = require('node:http');
-const {join} = require('node:path');
-const {Server} = require('socket.io')
+const { createServer } = require('node:http');
+const { join } = require('node:path');
+const { Server } = require('socket.io')
 
 const app = express();
 const server = createServer(app)
@@ -18,7 +10,16 @@ const io = new Server(server);
 const log4js = require('log4js');
 const logger = log4js.getLogger();
 
-//const {createItem, readItems, updateItem, deleteItem} = require('./crud')
+let crud = require('./crud')
+// const db = require('./database')
+//
+// const createItem = (login, password, email, callback) => {
+//     const sql = `INSERT INTO users (login, password, email) VALUES (?, ?, ?)`
+//     db.run(sql, [login, password, email], (err) => {
+//         callback(err, {id: this.lastID})
+//     })
+// }
+
 
 logger.level = 'info';
 const port = 3000;
@@ -43,8 +44,19 @@ io.on('connection', (socket) => {
         //отправление данных клиента при нажатии на loginButton
         logger.info(form.login + ' ' + form.password);
     })
-})
 
+    socket.on('register', (form) => {
+        //Регистрация при нажатии на кнопку
+        crud.createItem(form.login, form.password, "banan@code.com", (err, data) => {
+            if (err) {
+                console.error(err.message);
+            }
+            else {
+                console.log("Item created at" + data.id)
+            }
+        });
+    })
+})
 
 
 
