@@ -3,23 +3,14 @@ const { createServer } = require('node:http');
 const { join } = require('node:path');
 const { Server } = require('socket.io')
 
-const app = express();
+const app = express()
 const server = createServer(app)
-const io = new Server(server);
+const io = new Server(server)
 
-const log4js = require('log4js');
-const logger = log4js.getLogger();
+const log4js = require('log4js')
+const logger = log4js.getLogger()
 
 let crud = require('./crud')
-// const db = require('./database')
-//
-// const createItem = (login, password, email, callback) => {
-//     const sql = `INSERT INTO users (login, password, email) VALUES (?, ?, ?)`
-//     db.run(sql, [login, password, email], (err) => {
-//         callback(err, {id: this.lastID})
-//     })
-// }
-
 
 logger.level = 'info';
 const port = 3000;
@@ -47,12 +38,14 @@ io.on('connection', (socket) => {
 
     socket.on('register', (form) => {
         //Регистрация при нажатии на кнопку
-        crud.createItem(form.login, form.password, "banan@code.com", (err, data) => {
+        crud.createItem(form.login, form.password, "pomidor@code.com", (err, data) => {
             if (err) {
                 console.error(err.message);
+                socket.emit('regFail')
             }
             else {
-                console.log("Item created at" + data.id)
+                console.log("Item created at " + data.lastID)
+                socket.emit('regSucc')
             }
         });
     })

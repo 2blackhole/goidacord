@@ -11,6 +11,14 @@ socket.on('userName', name => {
     console.log(`Connection - ${name}`)
 })
 
+socket.on('regFail', () => {
+    alert('Registration failed: account already exists!')
+})
+
+socket.on('regSucc', () => {
+    alert('Registration succeeded!')
+})
+
 if (loginButton) {
     loginButton.addEventListener(
         'click', () => {

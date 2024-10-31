@@ -2,8 +2,8 @@ const db = require('./database')
 
 const createItem = (login, password, email, callback) => {
     const sql = `INSERT INTO users (login, password, email) VALUES (?, ?, ?)`
-    db.run(sql, [login, password, email], (err) => {
-        callback(err, {id: this.lastID})
+    db.run(sql, [login, password, email], function (err) {
+        callback(err, {lastID: this.lastID})
     })
 }
 
