@@ -9,23 +9,26 @@
 body {
   display: flex;
   justify-content: center;
-  margin-top: 15%;
-  background-color: #fff;
+  margin-top: 10%;
+  /* background-color: #fff; */
+  background-image: url('../images/goida.jpg');
+  background-position: center; 
+  background-size: calc(100%/7) auto;
 }
 
 .login__container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 45px;
+  gap: 50px;
   border-radius: 30px;
-  padding: 60px;
+  padding: 40px;
   background-color: #000;
 }
 
 .login__title {
   color: #fff;
-  font-size: 40px;
+  font-size: 35px;
   text-transform: uppercase;
 }
 
@@ -39,14 +42,13 @@ body {
 .auth-input {
   width: 80%;
   border-radius: 25px;
-  padding: 20px;
+  padding: 15px;
   color: #fff;
   font-size: 20px;
   background-color: #333;
 }
 
 .naeb {
-  margin-top: 10px;
   color: grey;
   font-size: 18px;
 }
@@ -54,13 +56,12 @@ body {
 .panel_buttons {
   display: flex;
   gap: 25px;
-  margin-top: 10px;
 }
 
 .login__button {
-  min-width: 200px;
+  min-width: 170px;
   border-radius: 25px;
-  padding: 20px;
+  padding: 18px;
   color: #fff;
   font-family: 'Neris';
   font-weight: 600;
