@@ -32,8 +32,26 @@ io.on('connection', (socket) => {
 
 
     socket.on('login_try', (form) => {
-        //отправление данных клиента при нажатии на loginButton
-        logger.info(form.login + ' ' + form.password);
+        crud.checkItemLogin(form.login, (err, result) => {
+            if (err) {
+                console.error(err.message)
+                socket.emit('logFail')
+            }
+            if (result == null) {
+                socket.emit('logIncorrect')
+            }
+            else {
+                if (result.login === form.login && result.password === form.password) {
+                    socket.emit('logSuccess', result)
+                    logger.info(`${form.login} connected with password ${form.password}!`)
+                }
+                else {
+                    socket.emit('logIncorrect')
+                    logger.info('Invalid password')
+                    logger.info(`From db : ${result.id}`)
+                }
+            }
+        })
     })
 
     socket.on('register', (form) => {
@@ -45,7 +63,7 @@ io.on('connection', (socket) => {
             }
             else {
                 console.log("Item created at " + data.lastID)
-                socket.emit('regSucc')
+                socket.emit('regSuccess')
             }
         });
     })

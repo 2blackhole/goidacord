@@ -7,18 +7,6 @@ const passwordForm = document.getElementById("Password_auth")
 const loginButton = document.getElementById("login_button")
 const registerButton = document.getElementById("register_button")
 
-socket.on('userName', name => {
-    console.log(`Connection - ${name}`)
-})
-
-socket.on('regFail', () => {
-    alert('Registration failed: account already exists!')
-})
-
-socket.on('regSucc', () => {
-    alert('Registration succeeded!')
-})
-
 if (loginButton) {
     loginButton.addEventListener(
         'click', () => {
@@ -54,3 +42,27 @@ if (registerButton) {
 else {
     console.log("There is no " + loginButton)
 }
+
+socket.on('userName', name => {
+    console.log(`Connection - ${name}`)
+})
+
+socket.on('regFail', () => {
+    alert('Registration failed: account already exists!')
+})
+
+socket.on('regSuccess', () => {
+    alert('Registration succeeded!')
+})
+
+socket.on('logFail', () => {
+    alert('Something went wrong!')
+})
+
+socket.on('logSuccess', () => {
+    alert('Login successful!')
+})
+
+socket.on('logIncorrect', () => {
+    alert('Invalid credentials!')
+})

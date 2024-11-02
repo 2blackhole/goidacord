@@ -22,7 +22,23 @@ const deleteItem = (id, callback) => {
     db.run(sql, id, callback)
 }
 
+const checkItemLogin = (login, callback) => {
+    const sql = `SELECT * FROM users WHERE login = ?`;
+    db.get(sql, login, function (err, result) {
+        callback(err, result);
+    })
+}
+
+const checkItemEmail = (email, callback) => {
+    const sql = `SELECT * FROM users WHERE email = ?`;
+    db.get(sql, email, function (err, result) {
+        callback(err, result);
+    })
+}
+
 exports.createItem = createItem;
 exports.readItems = readItems;
 exports.updateItem = updateItem;
 exports.deleteItem = deleteItem;
+exports.checkItemLogin = checkItemLogin;
+exports.checkItemEmail = checkItemEmail;
