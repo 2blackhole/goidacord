@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font-family: 'Neris';
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  margin-top: 15%;
+  background-color: #fff;
+}
+
+.login__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px;
+  border-radius: 30px;
+  padding: 60px;
+  background-color: #000;
+}
+
+.login__title {
+  color: #fff;
+  font-size: 40px;
+  text-transform: uppercase;
+}
+
+.login__panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+}
+
+.auth-input {
+  width: 80%;
+  border-radius: 25px;
+  padding: 20px;
+  color: #fff;
+  font-size: 20px;
+  background-color: #333;
+}
+
+.naeb {
+  margin-top: 10px;
+  color: grey;
+  font-size: 18px;
+}
+
+.panel_buttons {
+  display: flex;
+  gap: 25px;
+  margin-top: 10px;
+}
+
+.login__button {
+  min-width: 200px;
+  border-radius: 25px;
+  padding: 20px;
+  color: #fff;
+  font-family: 'Neris';
+  font-weight: 600;
+  font-size: 18px;
+  text-transform: uppercase;
+  background-color: #333;
+}
+
+.panel_buttons > button:active{
+  color: #333333;
+  background-color: white;
+}
