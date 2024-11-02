@@ -1,24 +1,56 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
   <head>
-    <meta charset="utf-8">
-    <title>chat</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
-    <link rel="stylesheet" href="./styles/login.css">
-    <link rel="stylesheet" href="./fonts/neris/neris.css">
+
+    <link rel="stylesheet" href="./styles/login(new).css" />
+    <link rel="stylesheet" href="./fonts/neris/neris.css" />
+
+    <title>GoidaCORD Login</title>
   </head>
+
   <body>
-    <div id="main_block">
-      <h1 id="TitleCompany">GoidaCORD</h1>
-      <form id = "auth-panel" onsubmit="return false">
-        <input type="text"    class = "auth-input" id="Username_auth" placeholder="Username">
-        <input type="password"class = "auth-input" id="Password_auth" placeholder="Password">
-        <a id="ebat_lox" href = "https://www.youtube.com/watch?v=xvFZjo5PgG0">Забыли пароль?</a>
-        <div class = "panel_buttons">
-          <button id = "login_button" type="submit">Войти</button>
-          <button id = "register_button">Регистрация</button>
+    <section class="login__container">
+      <h1 class="login__title">goida login</h1>
+
+      <form id="auth-panel" onsubmit="return false" class="login__panel">
+        <input
+          type="text"
+          class="auth-input"
+          id="Username_auth"
+          placeholder="Username"
+        />
+
+        <input
+          type="password"
+          class="auth-input"
+          id="Password_auth"
+          placeholder="Password"
+        />
+
+        <a
+          id="ebat_lox"
+          target="_blank"
+          href="https://www.youtube.com/watch?v=xvFZjo5PgG0"
+          class="naeb"
+          >Забыли пароль?</a
+        >
+
+        <div class="panel_buttons">
+          <button id="login_button" type="submit" class="login__button">
+            войти
+          </button>
+
+          <button id="register_button" class="login__button" type="submit">
+            регистрация
+          </button>
         </div>
       </form>
-    </div>
-    <script src="login.js"></script>
+    </section>
+
+    <script src="./scripts/login.js"></script>
   </body>
 </html>
