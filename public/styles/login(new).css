@@ -7,10 +7,10 @@
 }
 
 body {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
   /* background-color: #fff; */
   background-image: url('../images/goida.jpg');
   background-position: center; 
@@ -27,7 +27,7 @@ body {
   background-color: #000;
 }
 
-.login__title {
+.title {
   color: #fff;
   font-size: 35px;
   text-transform: uppercase;
@@ -59,7 +59,7 @@ body {
   gap: 25px;
 }
 
-.login__button {
+.goida_button {
   min-width: 170px;
   border-radius: 25px;
   padding: 18px;
