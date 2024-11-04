@@ -46,7 +46,6 @@
           <button id="login_button" type="submit" class="goida_button">
             войти
           </button>
-          <!-- id="register_button" этой хуйни тут не надо-->
           <button
             class="goida_button"
             type="button"
@@ -91,26 +90,13 @@
 
         <div class="panel_buttons">
           <button type="button" class="goida_button" onclick="switchToLogin()">
-            войти
+            подзайти
           </button>
-          <button type="submit" class="goida_button">регнуть</button>
+          <button type="submit" id="register_button" class="goida_button">регнуть</button>
         </div>
       </form>
     </section>
 
     <script src="./scripts/login.js"></script>
-    <script>
-      function switchToRegister() {
-        document.getElementById('login__container').style.display = 'none';
-        document.getElementById('registration__container').style.display =
-          'flex';
-      }
-
-      function switchToLogin() {
-        document.getElementById('login__container').style.display = 'flex';
-        document.getElementById('registration__container').style.display =
-          'none';
-      }
-    </script>
   </body>
 </html>

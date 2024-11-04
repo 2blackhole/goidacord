@@ -4,12 +4,16 @@ const socket = io.connect('http://localhost:' + port)
 const loginForm = document.getElementById("Username_auth")
 const passwordForm = document.getElementById("Password_auth")
 
+const registerNickname = document.getElementById("registerNickname")
+const registerEmail = document.getElementById("registerEmail")
+const registerPassword = document.getElementById("registerPassword")
+
 const loginButton = document.getElementById("login_button")
 const registerButton = document.getElementById("register_button")
 
 if (loginButton) {
     loginButton.addEventListener(
-        'click', () => {
+        'click', (event) => {
             if (loginForm.value && passwordForm.value.length >= 8) {
                 socket.emit('login_try', {
                     login: loginForm.value,
@@ -18,6 +22,7 @@ if (loginButton) {
             } else {
                 alert("Invalid login credentials. Your Login must be not null and Password length must be at least 8")
             }
+            event.preventDefault()
         }
     )
 }
@@ -27,15 +32,17 @@ else {
 
 if (registerButton) {
     registerButton.addEventListener(
-        'click', () => {
-            if (loginForm.value && passwordForm.value.length >= 8) {
+        'click', (event) => {
+            if (registerNickname.value && registerEmail.value && registerPassword.value.length >= 8) {
                 socket.emit('register', {
-                    login: loginForm.value,
-                    password: passwordForm.value
+                    login: registerNickname.value,
+                    password: registerPassword.value,
+                    email: registerEmail.value
                 })
             } else {
                 alert("Invalid register credentials. Your Login must be not null and Password length must be at least 8")
             }
+            event.preventDefault()
         }
     )
 }
@@ -66,3 +73,15 @@ socket.on('logSuccess', () => {
 socket.on('logIncorrect', () => {
     alert('Invalid credentials!')
 })
+
+function switchToRegister() {
+    document.getElementById('login__container').style.display = 'none';
+    document.getElementById('registration__container').style.display =
+        'flex';
+}
+
+function switchToLogin() {
+    document.getElementById('login__container').style.display = 'flex';
+    document.getElementById('registration__container').style.display =
+        'none';
+}

@@ -56,7 +56,7 @@ io.on('connection', (socket) => {
 
     socket.on('register', (form) => {
         //Регистрация при нажатии на кнопку
-        crud.createItem(form.login, form.password, "pomidor@code.com", (err, data) => {
+        crud.createItem(form.login, form.password, form.email, (err, data) => {
             if (err) {
                 console.error(err.message);
                 socket.emit('regFail')
@@ -64,12 +64,11 @@ io.on('connection', (socket) => {
             else {
                 console.log("Item created at " + data.lastID)
                 socket.emit('regSuccess')
+
             }
         });
     })
 })
-
-
 
 
 
