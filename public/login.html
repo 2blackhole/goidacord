@@ -46,8 +46,12 @@
           <button id="login_button" type="submit" class="goida_button">
             войти
           </button>
-<!-- id="register_button" этой хуйни тут не надо-->
-          <button  class="goida_button" type="button" onclick="switchToRegister()">
+          <!-- id="register_button" этой хуйни тут не надо-->
+          <button
+            class="goida_button"
+            type="button"
+            onclick="switchToRegister()"
+          >
             регистрация
           </button>
         </div>
@@ -55,7 +59,7 @@
     </section>
 
     <section id="registration__container" class="registration__container">
-      <h1 class="title">goida reg</h1>
+      <h1 class="title">registration</h1>
 
       <form class="register_form">
         <input
@@ -86,7 +90,9 @@
         />
 
         <div class="panel_buttons">
-          <button type="button" class="goida_button" onclick="switchToLogin()">войти</button>
+          <button type="button" class="goida_button" onclick="switchToLogin()">
+            войти
+          </button>
           <button type="submit" class="goida_button">регнуть</button>
         </div>
       </form>
@@ -96,12 +102,14 @@
     <script>
       function switchToRegister() {
         document.getElementById('login__container').style.display = 'none';
-        document.getElementById('registration__container').style.display = 'flex';
+        document.getElementById('registration__container').style.display =
+          'flex';
       }
 
       function switchToLogin() {
         document.getElementById('login__container').style.display = 'flex';
-        document.getElementById('registration__container').style.display = 'none';
+        document.getElementById('registration__container').style.display =
+          'none';
       }
     </script>
   </body>
