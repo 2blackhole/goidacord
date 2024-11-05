@@ -36,17 +36,18 @@ if (registerButton) {
         'click', (event) => {
             if (registerPassword.value !== confirmPassword.value) {
                 alert(`Passwords do not match!`)
-            }
-            if (registerNickname.value && registerEmail.value && registerPassword.value.length >= 8 && registerPassword.value === confirmPassword.value) {
-                socket.emit('register', {
-                    login: registerNickname.value,
-                    password: registerPassword.value,
-                    email: registerEmail.value
-                })
             } else {
-                alert("Invalid register credentials. Your Login must be not null and Password length must be at least 8")
+                if (registerNickname.value && registerEmail.value && registerPassword.value.length >= 8 && registerPassword.value === confirmPassword.value) {
+                    socket.emit('register', {
+                        login: registerNickname.value,
+                        password: registerPassword.value,
+                        email: registerEmail.value
+                    })
+                } else {
+                    alert("Invalid register credentials. Your Login must be not null and Password length must be at least 8")
+                }
+                event.preventDefault()
             }
-            event.preventDefault()
         }
     )
 }
