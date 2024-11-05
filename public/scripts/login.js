@@ -7,6 +7,7 @@ const passwordForm = document.getElementById("Password_auth")
 const registerNickname = document.getElementById("registerNickname")
 const registerEmail = document.getElementById("registerEmail")
 const registerPassword = document.getElementById("registerPassword")
+const confirmPassword = document.getElementById("confirmPassword")
 
 const loginButton = document.getElementById("login_button")
 const registerButton = document.getElementById("register_button")
@@ -33,7 +34,10 @@ else {
 if (registerButton) {
     registerButton.addEventListener(
         'click', (event) => {
-            if (registerNickname.value && registerEmail.value && registerPassword.value.length >= 8) {
+            if (registerPassword.value !== confirmPassword.value) {
+                alert(`Passwords do not match!`)
+            }
+            if (registerNickname.value && registerEmail.value && registerPassword.value.length >= 8 && registerPassword.value === confirmPassword.value) {
                 socket.emit('register', {
                     login: registerNickname.value,
                     password: registerPassword.value,
