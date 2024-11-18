@@ -16,10 +16,22 @@ if (loginButton) {
     loginButton.addEventListener(
         'click', (event) => {
             if (loginForm.value && passwordForm.value.length >= 8) {
+                const data = {
+                    login: loginForm.value,
+                    password: passwordForm.value
+                }
+                fetch("http://localhost:3000/login", {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                }).then((res => res.json()))
+                    .then(res => console.log(res))
+                /*
                 socket.emit('login_try', {
                     login: loginForm.value,
                     password: passwordForm.value
                 })
+                 */
             } else {
                 alert("Invalid login credentials. Your Login must be not null and Password length must be at least 8")
             }
@@ -38,11 +50,28 @@ if (registerButton) {
                 alert(`Passwords do not match!`)
             } else {
                 if (registerNickname.value && registerEmail.value && registerPassword.value.length >= 8 && registerPassword.value === confirmPassword.value) {
+
+                    const data = {
+                        login: registerNickname.value,
+                        password: registerPassword.value,
+                        email: registerEmail.value
+                    }
+
+                    fetch("http://localhost:3000/register", {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(data)
+                    }).then((res => res.json()))
+                        .then(res => console.log(res))
+
+                    /*
                     socket.emit('register', {
                         login: registerNickname.value,
                         password: registerPassword.value,
                         email: registerEmail.value
                     })
+                    */
+
                 } else {
                     alert("Invalid register credentials. Your Login must be not null and Password length must be at least 8")
                 }

@@ -24,7 +24,7 @@ server.listen(port);
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get('/login', auth.login)
+app.post('/login', auth.login)
 app.post('/register', auth.registration)
 
 app.use(express.static(resolve('../frontend/public')))

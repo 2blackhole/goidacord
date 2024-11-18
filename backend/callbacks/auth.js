@@ -14,7 +14,7 @@ module.exports.registration = (req, res) => {
 }
 
 module.exports.login = (req, res) => {
-    dbworker.checkItemLogin(req.query.login, (err, result) => {
+    dbworker.checkItemLogin(req.body.login, (err, result) => {
         if (err) {
             console.error(err.message)
             res.json({"status" : "error"})
@@ -23,9 +23,9 @@ module.exports.login = (req, res) => {
             res.json({"status" : "logIncorrect"})
         }
         else {
-            if (result.login === req.query.login && result.password === req.query.password) {
+            if (result.login === req.body.login && result.password === req.body.password) {
                 res.json({"status" : "logSuccess", "user" : result})
-                console.log(`${req.query.login} connected with password ${req.query.password}!`)
+                console.log(`${req.body.login} connected with password ${req.body.password}!`)
             }
             else {
                 res.json({"status" : "logIncorrect"})
