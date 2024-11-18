@@ -2,6 +2,7 @@ const express = require('express');
 const { createServer } = require('node:http');
 const { join, resolve } = require('node:path');
 const { Server } = require('socket.io')
+const bodyParser = require('body-parser')
 
 const app = express()
 const server = createServer(app)
@@ -12,11 +13,19 @@ const logger = log4js.getLogger()
 
 const dbworker = require('./database/dbworker')
 
+const auth = require('./callbacks/auth')
+
 logger.level = 'info';
 const port = 3000;
 
 logger.debug("Script has been started...")
 server.listen(port);
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.get('/login', auth.login)
+app.post('/register', auth.registration)
 
 app.use(express.static(resolve('../frontend/public')))
 app.get('/', (req, res) => {
@@ -66,7 +75,6 @@ io.on('connection', (socket) => {
             else {
                 console.log("Item created at " + data.lastID)
                 socket.emit('regSuccess')
-
             }
         });
     })
