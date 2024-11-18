@@ -32,7 +32,28 @@ const checkItemLogin = (login, callback) => {
 const checkItemEmail = (email, callback) => {
     const sql = `SELECT * FROM users WHERE email = ?`;
     db.get(sql, email, function (err, result) {
-        callback(err, result);
+        callback(err, result)
+    })
+}
+
+const createServer = (name, callback) => {
+    const sql = `INSERT INTO servers (name) VALUES (?)`
+    db.run(sql, [name], function (err) {
+        callback(err, {lastID: this.lastID})
+    })
+}
+
+const addServerToUser = (user_id, server_id, callback) => {
+    const sql = `INSERT INTO users_servers (user_id, server_id) VALUES (?, ?)`
+    db.run(sql, [user_id, server_id], function (err) {
+        callback(err, {lastID: this.lastID})
+    })
+}
+
+const getServers = (id, callback) => {
+    const sql = `SELECT server_id FROM users_servers WHERE user_id = ?`;
+    db.all(sql, id, function (err, result) {
+        callback(err, result)
     })
 }
 
@@ -42,3 +63,6 @@ exports.updateItem = updateItem;
 exports.deleteItem = deleteItem;
 exports.checkItemLogin = checkItemLogin;
 exports.checkItemEmail = checkItemEmail;
+exports.getServers = getServers;
+exports.createServer = createServer
+exports.addServerToUser = addServerToUser
