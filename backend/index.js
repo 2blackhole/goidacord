@@ -13,9 +13,10 @@ const logger = log4js.getLogger()
 
 const dbworker = require('./database/dbworker')
 
-const auth = require('./callbacks/auth')
-const servers = require('./callbacks/servers')
+const auth = require('./auth/auth')
+const servers = require('./servers/servers')
 
+const config = require('./config')
 
 logger.level = 'info';
 const port = 3000;
@@ -24,6 +25,7 @@ logger.debug("Script has been started...")
 server.listen(port);
 
 app.use(bodyParser.json())
+app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.post('/login', auth.login)

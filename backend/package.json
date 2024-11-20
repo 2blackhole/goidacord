@@ -13,6 +13,7 @@
     "express": "^4.21.1",
     "express-session": "^1.18.1",
     "http": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
     "log4js": "^6.9.1",
     "nodemon": "^3.1.7",
     "socket.io": "^4.8.0",

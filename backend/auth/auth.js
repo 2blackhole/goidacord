@@ -1,4 +1,6 @@
 const dbworker = require("../database/dbworker")
+const config = require("../config")
+const jwt = require("jsonwebtoken");
 
 module.exports.registration = (req, res) => {
     dbworker.createItem(req.body.login, req.body.password, req.body.email, (err, data) => {
@@ -14,6 +16,7 @@ module.exports.registration = (req, res) => {
 }
 
 module.exports.login = (req, res) => {
+
     dbworker.checkItemLogin(req.body.login, (err, result) => {
         if (err) {
             console.error(err.message)
@@ -24,8 +27,14 @@ module.exports.login = (req, res) => {
         }
         else {
             if (result.login === req.body.login && result.password === req.body.password) {
-                res.json({"status" : "logSuccess", "user" : result})
+
+                //res.json({"status" : "logSuccess", "user" : result})
                 console.log(`${req.body.login} connected with password ${req.body.password}!`)
+
+                jwt.sign({'id' : result.id}, config.ACCESS_TOKEN_SECRET, (err, token) => {
+                    if (err) return res.json({"status" : "razrabiDauni"})
+                    res.json({"token" : token})
+                })
             }
             else {
                 res.json({"status" : "logIncorrect"})

@@ -84,30 +84,6 @@ else {
     console.log("There is no " + loginButton)
 }
 
-socket.on('userName', name => {
-    console.log(`Connection - ${name}`)
-})
-
-socket.on('regFail', () => {
-    alert('Registration failed: account already exists!')
-})
-
-socket.on('regSuccess', () => {
-    alert('Registration succeeded!')
-})
-
-socket.on('logFail', () => {
-    alert('Something went wrong!')
-})
-
-socket.on('logSuccess', () => {
-    alert('Login successful!')
-})
-
-socket.on('logIncorrect', () => {
-    alert('Invalid credentials!')
-})
-
 function switchToRegister() {
     document.getElementById('login__container').style.display = 'none';
     document.getElementById('registration__container').style.display =
