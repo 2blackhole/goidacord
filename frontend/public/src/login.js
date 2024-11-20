@@ -1,5 +1,5 @@
 const port = 3000
-const socket = io.connect('http://localhost:' + port)
+//const socket = io.connect('http://localhost:' + port)
 
 const loginForm = document.getElementById("Username_auth")
 const passwordForm = document.getElementById("Password_auth")

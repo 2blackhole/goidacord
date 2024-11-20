@@ -1,22 +1,19 @@
 const express = require('express');
 const { createServer } = require('node:http');
 const { join, resolve } = require('node:path');
-const { Server } = require('socket.io')
+//const { Server } = require('socket.io')
 const bodyParser = require('body-parser')
 
 const app = express()
 const server = createServer(app)
-const io = new Server(server)
+//const io = new Server(server)
 
 const log4js = require('log4js')
 const logger = log4js.getLogger()
 
-const dbworker = require('./database/dbworker')
-
 const auth = require('./auth/auth')
+const auth_middleware = require('./auth/auth_middleware')
 const servers = require('./servers/servers')
-
-const config = require('./config')
 
 logger.level = 'info';
 const port = 3000;
@@ -33,11 +30,13 @@ app.post('/register', auth.registration)
 
 app.post('/createServer', servers.createServer)
 app.post('/addServerToUser', servers.addServerToUser)
-app.post('/getServers', servers.getServers)
+app.post('/getServers', auth_middleware.authenticateToken, servers.getServers)
 
 app.use(express.static(resolve('../frontend/public')))
-app.get('/', (req, res) => {
-    res.sendFile(join(__dirname, '../frontend/public/login.html'));
+app.get('/', auth_middleware.authenticateToken, (req, res) => {
+    //if (!req.id) return res.sendFile(join(__dirname, '../frontend/public/login.html'));
+
+    res.json({"status" : "ok", "id" : req.id});
 })
 
 console.log(__dirname);

@@ -28,12 +28,11 @@ module.exports.login = (req, res) => {
         else {
             if (result.login === req.body.login && result.password === req.body.password) {
 
-                //res.json({"status" : "logSuccess", "user" : result})
                 console.log(`${req.body.login} connected with password ${req.body.password}!`)
 
                 jwt.sign({'id' : result.id}, config.ACCESS_TOKEN_SECRET, (err, token) => {
                     if (err) return res.json({"status" : "razrabiDauni"})
-                    res.json({"token" : token})
+                    res.json({"token" : token, "status" : "logSuccess"})
                 })
             }
             else {

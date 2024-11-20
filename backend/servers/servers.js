@@ -1,7 +1,7 @@
 const dbworker = require('../database/dbworker')
 
 module.exports.getServers = (req, res) => {
-    dbworker.getServers(req.body.id, (err, result) => {
+    dbworker.getServers(req.id, (err, result) => {
         if (err) {
             console.error(err.message)
             res.json({"status" : "error"})
