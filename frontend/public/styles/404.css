@@ -44,4 +44,5 @@ body {
 
 .link_to_main:hover {
     color: #ff0000;
+    text-decoration: none;
 }
