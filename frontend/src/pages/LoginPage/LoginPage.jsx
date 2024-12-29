@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sign from "../../components/Sign/Sign";
 import { useNavigate } from "react-router-dom";
 
@@ -31,6 +31,21 @@ const LoginPage = () => {
     ],
     link: true,
   };
+
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/login", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       login: "Zalupov",
+  //       password: "123456",
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => console.log(res));
+  // }, []);
 
   return <Sign config={config} />;
 };

@@ -7,11 +7,11 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (!isLogin) {
-      navigate("/login");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!isLogin) {
+  //     navigate("/login");
+  //   }
+  // }, []);
 
   return (
     <Routes>
