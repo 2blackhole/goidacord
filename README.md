@@ -2,11 +2,10 @@
 ## Установка:
 
 Используется node.js, поэтому необходимо его установить.
-https://nodejs-org-git-meta-performance-bundle-improvements-openjs.vercel.app/en/download
+https://nodejs.org/en
 
-<b>Windows / Linux</b>
 В командной строке или терминале:
-
+Переходим в папку backend
 ```
 npm install
 ```
@@ -14,7 +13,7 @@ npm install
 <b>Windows / Linux</b>
 В командной строке или терминале:
 ```
-npm start
+npm start / npm run dev
 ```
 Потом заходим на сайт:
 ```
