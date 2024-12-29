@@ -1,18 +1,37 @@
-import React, { useEffect } from "react";
 import Sign from "../../components/Sign/Sign";
 import { useNavigate } from "react-router-dom";
+import { useLoginMutation } from "../../store/sign/api/sign.api";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/sign/slice/sign.slice";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
+  const [loginRequest] = useLoginMutation();
+
+  const dispatch = useDispatch();
+
+  const onSubmit = (data) => {
+    loginRequest(data)
+      .unwrap()
+      .then(() => {
+        dispatch(login());
+        navigate("/");
+      });
+  };
+
   const config = {
     header: "goida login",
+    onSubmit,
     fields: [
       {
         type: "text",
+        name: "login",
         placeholder: "Username",
       },
       {
         type: "password",
+        name: "password",
         placeholder: "Password",
       },
     ],
@@ -31,21 +50,6 @@ const LoginPage = () => {
     ],
     link: true,
   };
-
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/login", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       login: "Zalupov",
-  //       password: "123456",
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((res) => console.log(res));
-  // }, []);
 
   return <Sign config={config} />;
 };

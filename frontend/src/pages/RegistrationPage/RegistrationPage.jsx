@@ -1,25 +1,37 @@
-import {useEffect} from "react";
 import Sign from "../../components/Sign/Sign";
 import { useNavigate } from "react-router-dom";
+import { useRegisterMutation } from "../../store/sign/api/sign.api";
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
+
+  const [registerRequest] = useRegisterMutation();
+
+  const onSubmit = (data) => {
+    registerRequest(data)
+      .unwrap()
+      .then(() => {
+        navigate("/login");
+      });
+  };
+
   const config = {
     header: "Регистрация",
+    onSubmit,
     fields: [
       {
         type: "text",
         placeholder: "Username",
-        name: "registerNickName",
+        name: "login",
       },
       {
         type: "email",
-        name: "registerEmail",
+        name: "email",
         placeholder: "Email",
       },
       {
         type: "password",
-        name: "registerPassword",
+        name: "password",
         placeholder: "Password",
       },
       {
@@ -34,22 +46,6 @@ const RegistrationPage = () => {
     ],
     link: false,
   };
-
-  // useEffect(() => {
-  //     fetch("http://localhost:3000/register", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         login: "Zalupov",
-  //         password: "123456",
-  //         email: "zalupov@gmail.com",
-  //       }),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((res) => console.log(res));
-  //   }, []);
 
   return <Sign config={config} />;
 };
