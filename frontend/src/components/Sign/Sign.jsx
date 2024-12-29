@@ -1,13 +1,21 @@
 import classes from "./Sign.module.css";
+import { useForm } from "react-hook-form";
 
 const Sign = ({ config }) => {
+  const { register, handleSubmit } = useForm();
   return (
     <div className={classes.body}>
       <section className={classes.container}>
         <h1 className={classes.title}>{config.header}</h1>
-        <form className={classes.panel}>
+        <form onSubmit={handleSubmit(config.onSubmit)} className={classes.panel}>
           {config.fields?.map((field) => (
-            <input key={field.placeholder} className={classes["auth-input"]} required {...field} />
+            <input
+              key={field.placeholder}
+              className={classes["auth-input"]}
+              required
+              {...field}
+              {...register(field.name)}
+            />
           ))}
 
           {config.link && (

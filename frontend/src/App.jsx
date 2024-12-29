@@ -1,17 +1,11 @@
-import { Suspense, useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { PUBLIC_PAGES } from "./router/router";
-import { useEffect } from "react";
+import { Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import { PRIVATE_PAGES, PUBLIC_PAGES } from "./router/router";
+import { useSelector } from "react-redux";
+import { Error404Page } from "./pages";
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false);
-  const navigate = useNavigate()
-
-  // useEffect(() => {
-  //   if (!isLogin) {
-  //     navigate("/login");
-  //   }
-  // }, []);
+  const { isLogin } = useSelector((state) => state.sign);
 
   return (
     <Routes>
@@ -27,7 +21,25 @@ function App() {
               }
             />
           ))
-        : ""}
+        : PRIVATE_PAGES.map((page) => (
+            <Route
+              key={page.path}
+              path={page.path}
+              element={
+                <Suspense fallback={<div>Eblan</div>}>
+                  <page.component />
+                </Suspense>
+              }
+            />
+          ))}
+      <Route
+        path="*"
+        element={
+          <Suspense fallback={<div>Eblan</div>}>
+            <Error404Page />
+          </Suspense>
+        }
+      />
     </Routes>
   );
 }

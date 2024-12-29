@@ -12,7 +12,7 @@ const Error404Page = () => {
 
         <Link
           to={{
-            pathname: "/login",
+            pathname: "/",
           }}
           className={classes.link_to_main}
         >
