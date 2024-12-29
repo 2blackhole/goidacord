@@ -6,7 +6,7 @@ const MainPage = () => {
         <div className={classes.body}>
             <div className={classes.body__eblan}>
                 <button onClick={() => {
-                    fetch(`${BASE_URL}/getServers`, {
+                    fetch(`${BASE_URL}/servers`, {
                         headers: {
                             authorization: `Bearer ${localStorage.getItem("token")}`,
                             "Content-Type": "application/json",
