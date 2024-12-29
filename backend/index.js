@@ -36,7 +36,7 @@ app.use(express.static(resolve('../frontend/public')))
 app.get('/', auth_middleware.authenticateToken, (req, res) => {
     //if (!req.id) return res.sendFile(join(__dirname, '../frontend/public/login.html'));
 
-    res.json({"status" : "ok", "id" : req.id});
+    res.json({"status" : "okgi", "id" : req.id});
 })
 
 console.log(__dirname);
