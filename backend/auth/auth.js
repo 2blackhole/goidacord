@@ -1,5 +1,4 @@
 const dbworker = require("../database/dbworker")
-const config = require("../config")
 const jwt = require("jsonwebtoken");
 
 module.exports.registration = (req, res) => {
@@ -30,7 +29,7 @@ module.exports.login = (req, res) => {
 
                 console.log(`${req.body.login} connected with password ${req.body.password}!`)
 
-                jwt.sign({'id' : result.id}, config.ACCESS_TOKEN_SECRET, (err, token) => {
+                jwt.sign({'id' : result.id}, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
                     if (err) return res.json({"status" : "razrabiDauni"})
                     res.json({"token" : token, "status" : "logSuccess"})
                 })
