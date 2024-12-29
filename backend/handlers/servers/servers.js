@@ -1,4 +1,4 @@
-const dbworker = require('../database/dbworker')
+const dbworker = require('../../database/dbworker')
 
 module.exports.getServers = (req, res) => {
     dbworker.getServers(req.id, (err, result) => {

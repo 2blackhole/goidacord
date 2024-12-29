@@ -1,4 +1,4 @@
-const dbworker = require("../database/dbworker")
+const dbworker = require("../../database/dbworker")
 const jwt = require("jsonwebtoken");
 
 module.exports.registration = (req, res) => {

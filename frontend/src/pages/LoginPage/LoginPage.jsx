@@ -13,11 +13,13 @@ const LoginPage = () => {
 
   const onSubmit = (data) => {
     loginRequest(data)
-      .unwrap()
-      .then(() => {
-        dispatch(login());
-        navigate("/");
-      });
+        .unwrap()
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem("token", res.token);
+          dispatch(login());
+          navigate("/");
+        });
   };
 
   const config = {
