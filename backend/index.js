@@ -3,6 +3,7 @@ const { createServer } = require('node:http');
 const { join, resolve } = require('node:path');
 //const { Server } = require('socket.io')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const app = express()
 const server = createServer(app)
@@ -24,6 +25,7 @@ server.listen(port);
 app.use(bodyParser.json())
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cors())
 
 app.post('/login', auth.login)
 app.post('/register', auth.registration)
@@ -33,11 +35,11 @@ app.post('/addServerToUser', servers.addServerToUser)
 app.post('/getServers', auth_middleware.authenticateToken, servers.getServers)
 
 app.use(express.static(resolve('../frontend/public')))
-app.get('/', auth_middleware.authenticateToken, (req, res) => {
-    //if (!req.id) return res.sendFile(join(__dirname, '../frontend/public/login.html'));
+// app.get('/', auth_middleware.authenticateToken, (req, res) => {
+//     //if (!req.id) return res.sendFile(join(__dirname, '../frontend/public/login.html'));
 
-    res.json({"status" : "okgi", "id" : req.id});
-})
+//     res.json({"status" : "okgi", "id" : req.id});
+// })
 
 console.log(__dirname);
 
