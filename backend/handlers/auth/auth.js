@@ -1,8 +1,8 @@
-const dbworker = require("../../database/dbworker");
+const db_users = require("../../database/db_users");
 const jwt = require("jsonwebtoken");
 
 module.exports.registration = (req, res) => {
-  dbworker.createItem(
+  db_users.createItem(
     req.body.login,
     req.body.password,
     req.body.email,
@@ -14,12 +14,13 @@ module.exports.registration = (req, res) => {
         console.log("Item created at " + data.lastID);
         res.json({ status: "regSuccess" });
       }
+
     }
   );
 };
 
 module.exports.login = (req, res) => {
-  dbworker.checkItemLogin(req.body.login, (err, result) => {
+  db_users.checkItemLogin(req.body.login, (err, result) => {
     if (err) {
       console.error(err.message);
       res.json({ status: "error" });
