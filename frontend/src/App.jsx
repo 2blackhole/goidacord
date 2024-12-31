@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { PRIVATE_PAGES, PUBLIC_PAGES } from "./router/router";
 import { useSelector } from "react-redux";
 import { Error404Page } from "./pages";
+import { LoadingPage } from "./pages";
 
 function App() {
   const { isLogin } = useSelector((state) => state.sign);
@@ -15,7 +16,7 @@ function App() {
               key={page.path}
               path={page.path}
               element={
-                <Suspense fallback={<div>Eblan</div>}>
+                <Suspense fallback={<LoadingPage />}>
                   <page.component />
                 </Suspense>
               }
@@ -26,7 +27,7 @@ function App() {
               key={page.path}
               path={page.path}
               element={
-                <Suspense fallback={<div>Eblan</div>}>
+                <Suspense fallback={<LoadingPage />}>
                   <page.component />
                 </Suspense>
               }
@@ -35,7 +36,7 @@ function App() {
       <Route
         path="*"
         element={
-          <Suspense fallback={<div>Eblan</div>}>
+          <Suspense fallback={<LoadingPage />}>
             <Error404Page />
           </Suspense>
         }
