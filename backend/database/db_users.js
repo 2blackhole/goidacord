@@ -7,9 +7,9 @@ const createItem = (login, password, email, callback) => {
     })
 }
 
-const readItems = (callback) => {
-    const sql = `SELECT * FROM users`;
-    db.all(sql, [], callback)
+const readItems = (id, callback) => {
+    const sql = `SELECT * FROM users WHERE id = ?`;
+    db.all(sql, [id], callback)
 }
 
 const updateItem = (id, login, password, email, callback) => {

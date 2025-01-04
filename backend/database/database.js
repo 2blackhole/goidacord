@@ -10,7 +10,7 @@ let db = new sqlite3.Database(dbname, (err) => {
             else {console.log("Table users created / already exists");}
         });
 
-        db.run("CREATE TABLE IF NOT EXISTS servers (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(50) UNIQUE NOT NULL )", err => {
+        db.run("CREATE TABLE IF NOT EXISTS servers (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(50) UNIQUE NOT NULL, owner_id INTEGER NOT NULL)", err => {
             if (err) console.error(err.message);
             else {console.log("Table servers created / already exists");}
         })

@@ -1,7 +1,7 @@
 const db = require("./database");
-const createItem = (name, callback) => {
-    const sql = `INSERT INTO servers (name) VALUES (?)`
-    db.run(sql, [name], function (err) {
+const createItem = (name, owner_id, callback) => {
+    const sql = `INSERT INTO servers (name, owner_id) VALUES (?, ?)`
+    db.run(sql, [name, owner_id], function (err) {
         callback(err, {lastID: this.lastID})
     })
 }
