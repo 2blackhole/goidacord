@@ -7,7 +7,6 @@ const {
 
 server_router.use((req, res, next) => {
     req.body.owner_id = req.id;
-    req.user_id = req.id;
     next();
 })
 server_router.post("/", createServer);
