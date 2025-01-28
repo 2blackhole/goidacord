@@ -7,13 +7,14 @@ const createItem = (name, server_id, callback) => {
 
 const readItemById = (id, callback) => {
     const sql = `SELECT * FROM text_channels WHERE id = ?`;
-    db.all(sql, id, callback);
+    db.get(sql, id, callback);
 }
 
 const readItemsByServerId = (server_id, callback) => {
     const sql = `SELECT * FROM text_channels WHERE server_id = ?`;
     db.all(sql, server_id, callback);
 }
+
 
 const updateItem = (id, name, callback) => {
     const sql = `UPDATE text_channels SET name = ? WHERE id = ?`;

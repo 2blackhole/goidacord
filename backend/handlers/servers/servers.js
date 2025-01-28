@@ -18,6 +18,7 @@ const getServersDataByIdList = (idList, callback) => {
 }
 
 module.exports.getUserServers = (req, res) => {
+    /*
     db_user_server.readItems(req.id, (err, result) => {
         if (err) {
             console.error(err.message)
@@ -31,6 +32,15 @@ module.exports.getUserServers = (req, res) => {
                 console.log("error while trying get server data by id from getUserServers")
             res.json({"status" : "ok", "user_id" : req.id, "data" : data})
         })
+    })
+     */
+    db_servers.getServersByUser(req.id, (err, result) => {
+        if (err) {
+            console.error(err.message)
+            res.json({"status": "error getUserServers"})
+            return
+        }
+        res.json({"status" : "ok", "data" : result})
     })
 }
 
@@ -62,20 +72,20 @@ module.exports.addServerToUser = (req, res) => {
 
 module.exports.getServerInfo = (req, res) => {
     serverId = req.params.serverId;
-    let answer = {
+    let server = {
         status : "ok",
         id : serverId
     }
-    db_servers.readItems(serverId, (err, result) => {
+    db_servers.readItem(serverId, (err, result) => {
         if (err) {
             console.error(err.message);
             res.json({"status" : "error getServerInfo while loading server data"})
         }
-        answer.name = result[0].name;
-        answer.owner_id = result[0].owner_id;
+        server.name = result.name;
+        server.owner_id = result.owner_id;
         db_text_channels.readItemsByServerId(serverId, (err, insult) => {
-            answer.text_channels = insult;
-            res.json(answer);
+            server.text_channels = insult;
+            res.json(server);
         })
-    });
+    })
 }

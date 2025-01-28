@@ -11,11 +11,6 @@ const readItem = (id, callback) => {
     db.get(sql, id, callback)
 }
 
-const getServersByUser = (user_id, callback) => {
-    const sql = `SELECT servers.id, servers.name, servers.owner_id FROM user_server LEFT JOIN servers ON servers.id = server_id WHERE user_id = ?`;
-    db.all(sql, user_id, callback)
-}
-
 const updateItem = (id, name, callback) => {
     const sql = `UPDATE servers SET name = ? WHERE id = ?`;
     db.run(sql, [name, id], callback)
