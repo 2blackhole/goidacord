@@ -36,27 +36,6 @@ const checkItemEmail = (email, callback) => {
     })
 }
 
-// const createServer = (name, callback) => {
-//     const sql = `INSERT INTO servers (name) VALUES (?)`
-//     db.run(sql, [name], function (err) {
-//         callback(err, {lastID: this.lastID})
-//     })
-// }
-//
-// const addServerToUser = (user_id, server_id, callback) => {
-//     const sql = `INSERT INTO users_servers (user_id, server_id) VALUES (?, ?)`
-//     db.run(sql, [user_id, server_id], function (err) {
-//         callback(err, {lastID: this.lastID})
-//     })
-// }
-//
-// const getServers = (id, callback) => {
-//     const sql = `SELECT server_id FROM users_servers WHERE user_id = ?`;
-//     db.all(sql, id, function (err, result) {
-//         callback(err, result)
-//     })
-// }
-
 exports.createItem = createItem;
 exports.readItems = readItems;
 exports.updateItem = updateItem;

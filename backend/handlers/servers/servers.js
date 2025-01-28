@@ -1,5 +1,21 @@
 const db_servers = require('../../database/db_servers');
 const db_user_server = require('../../database/db_user_server');
+const db_text_channels = require('../../database/db_text_channels')
+
+const getServersDataByIdList = (idList, callback) => {
+    let data = [];
+    for (let i = 0; i < idList.length; i++) {
+        db_servers.readItems(idList[i], (err, result) => {
+            if (err) {
+                console.error(err.message)
+            }
+            data.push(result)
+            if (i === idList.length - 1) {
+                callback(false, data)
+            }
+        })
+    }
+}
 
 module.exports.getUserServers = (req, res) => {
     db_user_server.readItems(req.id, (err, result) => {
@@ -7,7 +23,14 @@ module.exports.getUserServers = (req, res) => {
             console.error(err.message)
             res.json({"status" : "error getUserServers"})
         }
-        res.json({"status" : "ok", "user_id" : req.id, "data" : result})
+        userServersIdList = []
+        for (let i = 0; i < result.length; i++)
+            userServersIdList.push(result[i].server_id)
+        getServersDataByIdList(userServersIdList, (err, data) => {
+            if (err)
+                console.log("error while trying get server data by id from getUserServers")
+            res.json({"status" : "ok", "user_id" : req.id, "data" : data})
+        })
     })
 }
 
@@ -35,4 +58,24 @@ module.exports.addServerToUser = (req, res) => {
         }
         res.json({"status" : "ok", "data" : result})
     })
+}
+
+module.exports.getServerInfo = (req, res) => {
+    serverId = req.params.serverId;
+    let answer = {
+        status : "ok",
+        id : serverId
+    }
+    db_servers.readItems(serverId, (err, result) => {
+        if (err) {
+            console.error(err.message);
+            res.json({"status" : "error getServerInfo while loading server data"})
+        }
+        answer.name = result[0].name;
+        answer.owner_id = result[0].owner_id;
+        db_text_channels.readItemsByServerId(serverId, (err, insult) => {
+            answer.text_channels = insult;
+            res.json(answer);
+        })
+    });
 }
