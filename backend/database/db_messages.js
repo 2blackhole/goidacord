@@ -1,28 +1,34 @@
-const db = require("./database");
-const createItem = (name, owner_id, callback) => {
-    const sql = `INSERT INTO servers (name, owner_id) VALUES (?, ?)`
-    db.run(sql, [name, owner_id], function (err) {
+const db = require("./database")
+
+const createItem = (channel_id, type, content, text, time_stamp, callback) => {
+    const sql = `INSERT INTO messages (channel_id, type, content, text, time_stamp, time_stamp_edited, visible) VALUES (?, ?, ?, ?, ?, ?, ?)`
+    db.run(sql, [channel_id, type, content, text, time_stamp, null, 1], function (err) {
         callback(err, {lastID: this.lastID})
     })
 }
 
-const readItem = (id, callback) => {
-    const sql = `SELECT * FROM servers WHERE id = ?`;
-    db.get(sql, id, callback)
+const readItems = (channel_id, callback) => {
+    const sql = `SELECT * FROM messages WHERE channel_id = ?`;
+    db.get(sql, channel_id, callback)
 }
 
-const updateItem = (id, name, callback) => {
-    const sql = `UPDATE servers SET name = ? WHERE id = ?`;
-    db.run(sql, [name, id], callback)
+const editVisibility = (id, visible, callback) => {
+    const sql = `UPDATE messages SET visible = ? WHERE id = ?`;
+    db.run(sql, [visible, id], callback)
+}
+
+const editText = (id, text, time_stamp_edited, callback) => {
+    const sql = `UPDATE messages SET text = ?, time_stamp_edited = ? WHERE id = ?`;
+    db.run(sql, [text, time_stamp_edited, id], callback)
 }
 
 const deleteItem = (id, callback) => {
-    const sql = `DELETE FROM servers WHERE id = ?`;
+    const sql = `DELETE FROM messages WHERE id = ?`;
     db.run(sql, id, callback)
 }
 
 exports.createItem = createItem;
-exports.readItem = readItem;
-exports.updateItem = updateItem;
+exports.readItems = readItems;
+exports.editVisibility = editVisibility;
+exports.editText = editText;
 exports.deleteItem = deleteItem;
-exports.getServersByUser = getServersByUser;
