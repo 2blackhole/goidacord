@@ -1,5 +1,6 @@
 const express = require("express");
 const { createServer } = require("node:http");
+const {Server} = require("socket.io");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
@@ -8,7 +9,11 @@ const app = express();
 const server = createServer(app);
 
 const router = require("./router/router");
+const {initSocket} = require("./socket/socket");
 const port = 3000;
+
+const io = new Server(server);
+initSocket(io);
 
 server.listen(port);
 
