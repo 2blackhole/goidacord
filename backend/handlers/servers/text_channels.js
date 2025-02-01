@@ -19,3 +19,14 @@ module.exports.createChannel = (req, res) => {
         })
     })
 }
+
+module.exports.getChannelMessages = (req, res) => {
+    db_text_channels.readMessagesByChannelId(req.params.channelId, req.query.limit || 50, (err, result) => {
+        if (err) {
+            console.error(err.message);
+            res.json({"status" : "error"});
+        } else {
+            res.json(result);
+        }
+    })
+}

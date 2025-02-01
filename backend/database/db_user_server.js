@@ -14,6 +14,12 @@ const deleteItem = (user_id, callback) => {
     db.run(sql, user_id, callback)
 }
 
+const checkUser = (user_id, server_id, callback) => {
+    const sql = `SELECT COUNT(*) AS count FROM user_server WHERE user_id = ? AND server_id = ?`
+    db.get(sql, [user_id, server_id], callback)
+}
+
 exports.createItem = createItem;
 exports.readItems = readItems;
 exports.deleteItem = deleteItem;
+exports.checkUser = checkUser;

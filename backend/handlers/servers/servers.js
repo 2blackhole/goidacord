@@ -2,6 +2,7 @@ const db_servers = require('../../database/db_servers');
 const db_user_server = require('../../database/db_user_server');
 const db_text_channels = require('../../database/db_text_channels')
 
+/*
 const getServersDataByIdList = (idList, callback) => {
     let data = [];
     for (let i = 0; i < idList.length; i++) {
@@ -16,6 +17,7 @@ const getServersDataByIdList = (idList, callback) => {
         })
     }
 }
+*/
 
 module.exports.getUserServers = (req, res) => {
     /*
@@ -71,7 +73,7 @@ module.exports.addServerToUser = (req, res) => {
 }
 
 module.exports.getServerInfo = (req, res) => {
-    serverId = req.params.serverId;
+    const serverId = req.params.serverId;
     let server = {
         status : "ok",
         id : serverId

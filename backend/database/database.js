@@ -37,7 +37,7 @@ let db = new sqlite3.Database(dbname, (err) => {
             "content BLOB," +
             "text TEXT(5000)," +
             "time_stamp INTEGER NOT NULL," +
-            "time_stamp_edited INTEGER" +
+            "time_stamp_edited INTEGER," +
             "visible INTEGER)", err => {
             if (err) console.error(err.message);
             else {console.log("Table messages created / already exists");}

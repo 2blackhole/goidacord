@@ -7,9 +7,9 @@ const createItem = (channel_id, type, content, text, time_stamp, callback) => {
     })
 }
 
-const readItems = (channel_id, callback) => {
-    const sql = `SELECT * FROM messages WHERE channel_id = ?`;
-    db.get(sql, channel_id, callback)
+const readItems = (channel_id, limit, callback) => {
+    const sql = `SELECT * FROM messages WHERE channel_id = ? LIMIT ?`;
+    db.get(sql, [channel_id, limit], callback)
 }
 
 const editVisibility = (id, visible, callback) => {
