@@ -25,14 +25,9 @@ const deleteItem = (id, callback) => {
     db.run(sql, id, callback)
 }
 
-const readMessagesByChannelId = (channel_id, limit, callback) => {
-    const sql = `SELECT * FROM messages WHERE channel_id = ? ORDER BY time_stamp DESC LIMIT ?`;
-    db.all(sql, [channel_id, limit], callback)
-}
 
 exports.createItem = createItem;
 exports.readItemsByServerId = readItemsByServerId
 exports.readItemById = readItemById;
 exports.updateItem = updateItem;
 exports.deleteItem = deleteItem
-exports.readMessagesByChannelId = readMessagesByChannelId;
