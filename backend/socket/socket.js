@@ -1,5 +1,41 @@
-exports.initSocket = (io) => {
+const {Server} = require("socket.io");
+const  jwt  = require("jsonwebtoken");
+socketInit = async (server, cors) => {
+    const io = await new Server(server, {
+        cors: cors
+    })
+    return io;
+}
+
+initEventHandlers = (io) => {
+    io.use((socket, next) => {
+        const token = socket.request.headers.token
+        if (!token) {
+            socket.disconnect(true);
+            next(new Error("no token provided (socket.io)"))
+        } else {
+            jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, result) => {
+                if (err) {
+                    socket.disconnect(true)
+                    next(new Error("invalid token (socket.io)"))
+                } else {
+                    socket.userId = result.id;
+                    next()
+                }
+            })
+        }
+    })
     io.on("connection", (socket) => {
-        console.log("penis");
+        //сюда ивенты
+        socket.on("disconnect", async () => {
+            console.log(socket.id + " disconnected");
+        })
+    })
+}
+// чтобы прикольно
+exports.setSocket = async (server, cors) => {
+    const pivo = socketInit(server, cors);
+    pivo.then((io) => {
+        initEventHandlers(io)
     })
 }

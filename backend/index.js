@@ -1,6 +1,5 @@
 const express = require("express");
 const { createServer } = require("node:http");
-const {Server} = require("socket.io");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
@@ -8,14 +7,12 @@ require("dotenv").config();
 const app = express();
 const server = createServer(app);
 
-const router = require("./router/router");
-const {initSocket} = require("./socket/socket");
+const router = require("./router/router.js");
+const { setSocket } = require("./socket/socket.js")
 const port = 3000;
 
-const io = new Server(server);
-initSocket(io);
-
 server.listen(port);
+setSocket(server, process.env.CORS)
 
 app.use(bodyParser.json());
 app.use(express.json());
