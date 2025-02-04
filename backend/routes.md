@@ -54,7 +54,7 @@
 ```JS
 headers: {
         Authorization: `Bearer ${token}`
-      }
+}
 ``` 
 В ответ будет приходить JSON
 ```JSON
@@ -98,7 +98,7 @@ headers: {
 ```JS
 headers: {
         Authorization: `Bearer ${token}`
-      }
+}
 ``` 
 В ответ будет приходить 
 ```JSON
@@ -163,6 +163,17 @@ headers: {
 1) `POST localhost:3000/channels`
 
 Создание канала (пока доступно лишь создание текстового канала). Создать канал может только создатель сервера
+
+***
+### Динамические пути
+2) `POST localhost:3000/channels/:channelID`
+
+Создание сообщения по `id` канала.
+
+3) `GET localhost:3000/channels/:channelID`
+
+Получение последних сообщений канала
+
 ### Описание данных, которые нужно передать в запрос, а так же возвращаемых данных
 1) Указывается заголовок Authorization, а так же `name` и `server_id` в `body`
 ```json
@@ -171,4 +182,53 @@ headers: {
     "server_id" : 3
 }
 ```
-в ответ приходит лишь статус.
+В ответ приходит лишь статус.
+
+2) Указывается заголовок Authorization, `:channelId` в `path variables`, а также следующие переменные в body:
+    - `type` - тип сообщения. 1 - текст, 2 - фото, 3 - документ.
+    - `content` - BLOB если есть вложение, null если нет
+    - `text` - текст сообщения
+```json
+{
+   "type": 1,
+   "text": "abracadabra"
+}
+```
+
+В ответ приходит лишь статус.
+
+3) Указывается заголовок Authorization, `:channelId` в `path variables`, а также `limit` в параметрах GET запроса:
+```JS
+headers: {
+        Authorization: `Bearer ${token}`
+}
+params: {
+    limit: 2
+}
+``` 
+
+В ответ приходят последние `limit` сообщений в канале.
+```JSON
+[
+    {
+        "id": 4,
+        "channel_id": 1,
+        "type": 1,
+        "content": null,
+        "text": "abracadabra",
+        "time_stamp": 1738413148,
+        "time_stamp_edited": null,
+        "visible": 1
+    },
+    {
+        "id": 3,
+        "channel_id": 1,
+        "type": 1,
+        "content": null,
+        "text": "abracadabra",
+        "time_stamp": 1738413122,
+        "time_stamp_edited": null,
+        "visible": 1
+    }
+]
+```
