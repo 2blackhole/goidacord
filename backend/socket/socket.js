@@ -1,5 +1,7 @@
 const {Server} = require("socket.io");
 const  jwt  = require("jsonwebtoken");
+const { sendMessage } = require("./events_handlers/send_message")
+
 socketInit = async (server, cors) => {
     const io = await new Server(server, {
         cors: cors
@@ -26,13 +28,12 @@ initEventHandlers = (io) => {
         }
     })
     io.on("connection", (socket) => {
-        //сюда ивенты
+        socket.on("message:send", sendMessage(io, socket))
         socket.on("disconnect", async () => {
             console.log(socket.id + " disconnected");
         })
     })
 }
-// чтобы прикольно
 exports.setSocket = async (server, cors) => {
     const pivo = socketInit(server, cors);
     pivo.then((io) => {
